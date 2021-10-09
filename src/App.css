@@ -43,6 +43,14 @@
    width: 50vw;
 }
 
+.des-read{
+    color: teal;
+    text-decoration: underline;
+}
+.des-read:hover{
+    cursor: pointer;
+}
+
 
 @media (min-width: 250px) and (max-width: 767px) {
     .card-img-top {

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
 
 function Card(props) {
+  const [showDes, setShowDes] = useState(true);
+
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 ">
       <div className="card">
@@ -11,15 +14,36 @@ function Card(props) {
         />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">{props.movieName}</h5>
-          <p className="card-text">{props.movieDes}</p>
-          <button
-            className="btn btn-block btn-danger align-self-end mt-auto"
+
+          {props.movieDes.length > 98 ? (
+            <p className="card-text">
+              {" "}
+              {showDes ? props.movieDes.slice(0, 98) : props.movieDes}{" "}
+              <span
+                className="des-read"
+                onClick={() => {
+                  setShowDes(!showDes);
+                }}
+              >
+                {showDes ? "Read More" : "Read Less"}
+              </span>
+            </p>
+          ) : (
+            <p className="card-text"> {props.movieDes}</p>
+          )}
+
+          <p className="card-text"> </p>
+
+          <Button
+            variant="contained"
+            className="mt-auto"
+            color="error"
             onClick={() => {
               props.onDelete(props.id);
             }}
           >
-            Delete Movie
-          </button>
+            Delete movie
+          </Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Button from '@mui/material/Button';
 
 function AddMovie(props) {
   const [addMovie, setAddMovie] = useState({
@@ -69,15 +70,14 @@ function AddMovie(props) {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-success ml-2" onClick={submitMovie}>
-          Submit
-        </button>
-        <button type="submit" className="btn btn-secondary  ml-2" onClick={(e)=>{
+        
+      
+        <Button variant="outlined" color="success" className="ml-2" onClick={submitMovie}> Submit</Button>
+
+        <Button variant="outlined" color="error" className="ml-2" onClick={(e)=>{
           e.preventDefault()
           props.onClose();
-        }}>
-          Close
-        </button>
+        }}> Close</Button>
       </form>
     </div>
   );
