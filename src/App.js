@@ -76,13 +76,8 @@ function App() {
 
         <div className="card-section">
         <div class="row">
-          {movies.filter(mov=>{
-            if(searchTerm === "") {
-              return mov
-            } else if(mov.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())){
-              return mov
-            }
-          }).map((movie, index) => {
+          {movies.filter(mov=> mov.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+          ).map((movie, index) => {
             return (
               <Card
                 movieName={movie.title}
