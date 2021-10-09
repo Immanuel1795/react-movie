@@ -1,23 +1,101 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import movieData from "./movie";
+import Card from "./Card";
+import { useState } from "react";
+import AddMovie from "./AddMovie";
+import Navbar from "./Navbar";
+import swal from 'sweetalert';
+
 
 function App() {
+  const [movies, setMovies] = useState(movieData);
+  const [display, setDisplay] = useState("none");
+  const [searchTerm, setSearchTerm] = useState("")
+
+
+  function addMov(newMov) {
+    swal({
+      title: "Movie has been added successfully",
+      text: "You clicked the button!",
+      icon: "success",
+      button: "Aww yiss!",
+    });
+    setMovies((prevMovie) => {
+    
+      return [newMov, ...prevMovie ];
+    });
+  }
+
+  function deleteMov(id) {
+   
+
+      swal({
+        title: "Are you sure?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+         
+          swal("Movie has been removed successfully", {
+            icon: "success",
+            
+          });
+          setMovies((prevMovie) => {
+          return prevMovie.filter((x, index) => {
+            return index !== id;
+          });
+        });
+        } 
+     
+  
+      
+    });
+  }
+
+  function showForm(){
+    setDisplay("");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="container-fluid">
+
+      <div className="nav-section">
+        <Navbar onDisplay={showForm}/>
+        </div>
+
+        <div className="top-section"style={{display: display}}>
+          <AddMovie onAdd={addMov} onClose={()=>setDisplay("none")}/>
+        </div>
+
+        <div className="search-section">
+          <input type="text" placeholder="Search for a movie" onChange={(e)=>{setSearchTerm(e.target.value)}}/>
+        </div>
+
+        <div className="card-section">
+        <div class="row">
+          {movies.filter(mov=>{
+            if(searchTerm == "") {
+              return mov
+            } else if(mov.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())){
+              return mov
+            }
+          }).map((movie, index) => {
+            return (
+              <Card
+                movieName={movie.title}
+                movieDes={movie.plot}
+                movieImg={movie.image_url}
+                onDelete={deleteMov}
+                id={index}
+              />
+            );
+          })}
+        </div>
+        </div>
+      </div>
     </div>
   );
 }
