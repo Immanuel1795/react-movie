@@ -14,6 +14,7 @@ function App() {
   
 
   function addMov(newMov) {
+   
     swal({
       title: "Movie has been added successfully",
       text: "You clicked the button!",
@@ -21,7 +22,8 @@ function App() {
       button: "Aww yiss!",
     });
     setMovies((prevMovie) => {
-      return [newMov, ...prevMovie];
+      // console.log({...newMov, id: movies.length+1})
+      return [{...newMov, id: movies.length+1}, ...prevMovie];
     });
   }
 
@@ -36,9 +38,10 @@ function App() {
         swal("Movie has been removed successfully", {
           icon: "success",
         });
-        setMovies((prevMovie) => {
+        setMovies((prevMovie) => {  
+         
           return prevMovie.filter((x, index) => {
-            return index !== id;
+            return x.id !== id;
           });
         });
       }
@@ -79,13 +82,15 @@ function App() {
                   .includes(searchTerm.toLocaleLowerCase())
               )
               .map((movie, index) => {
+                
                 return (
                   <Card
                     movieName={movie.title}
                     movieDes={movie.plot}
                     movieImg={movie.image_url}
                     onDelete={deleteMov}
-                    id={index}
+                    id={movie.id}
+                    // id={index}
                     
 
                   />

@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 
 function AddMovie(props) {
+  
   const [addMovie, setAddMovie] = useState({
     title: "",
     plot: "",
@@ -29,6 +30,7 @@ function AddMovie(props) {
       title: "",
       plot: "",
       image_url: "",
+     
     });
     event.preventDefault();
   }
@@ -37,6 +39,8 @@ function AddMovie(props) {
     <div className="formz">
       <form>
       <Box >
+
+      
         <div class="mb-3">
           <label for="mname" class="form-label">
             Movie Name

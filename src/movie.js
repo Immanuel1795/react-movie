@@ -1,4 +1,5 @@
 const movieData = [{
+    id:1,
     "year": 2013,
     "title": "Rush",
     
@@ -14,7 +15,7 @@ const movieData = [{
         ]
     
 },
-{
+{   id:2,
     "year": 2013,
     "title": "Prisoners",
    
@@ -29,7 +30,7 @@ const movieData = [{
         ]
     
 },
-{
+{   id:3,
     "year": 2013,
     "title": "The Hunger Games",
    
@@ -44,7 +45,7 @@ const movieData = [{
         ]
     
 },
-{
+{    id:4,
     "title": "Thor: Ragnarok",
         "image_url": "https://ia.media-imdb.com/images/M/MV5BMTQyNzAwOTUxOF5BMl5BanBnXkFtZTcwMTE0OTc5OQ@@._V1_SX400_.jpg",
         "plot": "Faced with an enemy that even Odin and Asgard cannot withstand, Thor must embark on his most perilous and personal journey yet, one that will reunite him with Jane Foster and force him to sacrifice everything to save us all.",
@@ -56,7 +57,8 @@ const movieData = [{
         ]
     
 },
-{
+{   
+    id:5,
     "year": 2013,
     "title": "This Is the End",
     
@@ -72,6 +74,7 @@ const movieData = [{
     
 },
 {
+    id:6,
     "year": 2013,
     "title": "Insidious: Chap 2",
     
@@ -86,7 +89,8 @@ const movieData = [{
         ]
     
 },
-{
+{   
+    id:7,
     "year": 2013,
     "title": "World War Z",
     
@@ -102,6 +106,7 @@ const movieData = [{
     
 },
 {
+    id:8,
     "year": 2014,
     "title": "X-Men",
     
@@ -116,6 +121,7 @@ const movieData = [{
     
 },
 {
+    id:9,
     "year": 2014,
     "title": "Transformers",
     
@@ -130,6 +136,7 @@ const movieData = [{
     
 },
 {
+    id:10,
     "year": 2013,
     "title": "Now You See Me",
     
@@ -145,6 +152,7 @@ const movieData = [{
     
 },
 {
+    id:11,
     "year": 2013,
     "title": "Gravity",
     
@@ -160,6 +168,7 @@ const movieData = [{
     
 },
 {
+    id:12,
     "year": 2013,
     "title": "We're the Millers",
     
@@ -175,6 +184,7 @@ const movieData = [{
     
 },
 {
+    id:13,
     "year": 2013,
     "title": "Riddick",
    
@@ -190,6 +200,7 @@ const movieData = [{
     
 },
 {
+    id:14,
     "year": 2013,
     "title": "The Family",
    
@@ -205,6 +216,7 @@ const movieData = [{
     
 },
 {
+    id:15,
     "year": 2013,
     "title": "Star Trek",
    
@@ -220,6 +232,7 @@ const movieData = [{
     
 },
 {
+    id:16,
     "year": 2013,
     "title": "After Earth",
    
@@ -235,6 +248,7 @@ const movieData = [{
     
 },
 {
+    id:17,
     "year": 2013,
     "title": "The Great Gatsby",
     
@@ -250,6 +264,7 @@ const movieData = [{
     
 },
 {
+    id:18,
     "year": 2014,
     "title": "Divergent",
     
@@ -265,6 +280,7 @@ const movieData = [{
 },
 
 {
+    id:19,
     "year": 2013,
     "title": "Iron Man 3",
     
@@ -280,6 +296,7 @@ const movieData = [{
     
 },
 {
+    id:20,
     "year": 2014,
     "title": "Spider-Man 2",
    
@@ -294,6 +311,7 @@ const movieData = [{
     
 },
 {
+    id:21,
     "year": 2013,
     "title": "Curse of Chucky",
     
@@ -309,6 +327,7 @@ const movieData = [{
     
 },
 {
+    id:22,
     "year": 2013,
     "title": "The Conjuring",
    
@@ -324,6 +343,7 @@ const movieData = [{
     
 },
 {
+    id:23,
     "year": 2013,
     "title": "Oldboy",
     
@@ -338,6 +358,7 @@ const movieData = [{
     
 },
 {
+    id:24,
     "year": 2013,
     "title": "Escape Plan",
    
