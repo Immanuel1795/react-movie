@@ -31,7 +31,7 @@ const movieData = [{
 },
 {
     "year": 2013,
-    "title": "The Hunger Games: Catching Fire",
+    "title": "The Hunger Games",
    
         "image_url": "https://ia.media-imdb.com/images/M/MV5BMTAyMjQ3OTAxMzNeQTJeQWpwZ15BbWU4MDU0NzA1MzAx._V1_SX400_.jpg",
         "plot": "Katniss Everdeen and Peeta Mellark become targets of the Capitol after their victory in the 74th Hunger Games sparks a rebellion in the Districts of Panem.",
@@ -73,7 +73,7 @@ const movieData = [{
 },
 {
     "year": 2013,
-    "title": "Insidious: Chapter 2",
+    "title": "Insidious: Chap 2",
     
         "image_url": "https://ia.media-imdb.com/images/M/MV5BMTg0OTA5ODIxNF5BMl5BanBnXkFtZTcwNTUzNDg4OQ@@._V1_SX400_.jpg",
         "plot": "The haunted Lambert family seeks to uncover the mysterious childhood secret that has left them dangerously connected to the spirit world.",
@@ -103,7 +103,7 @@ const movieData = [{
 },
 {
     "year": 2014,
-    "title": "X-Men: Days of Future Past",
+    "title": "X-Men",
     
         "image_url": "https://ia.media-imdb.com/images/M/MV5BMTQ0NzIwNTA1MV5BMl5BanBnXkFtZTgwNjY2OTcwMDE@._V1_SX400_.jpg",
         "plot": "The X-Men send Wolverine to the past to change a major historical event that could globally impact man and mutant kind.",
@@ -117,7 +117,7 @@ const movieData = [{
 },
 {
     "year": 2014,
-    "title": "Transformers: Age of Extinction",
+    "title": "Transformers",
     
         "image_url": "https://ia.media-imdb.com/images/M/MV5BMTQyMDA5Nzg0Nl5BMl5BanBnXkFtZTgwNzA4NDcxMDE@._V1_SX400_.jpg",
         "plot": "A mechanic and his daughter make a discovery that brings down Autobots and Decepticons - and a paranoid government official - on them.",
@@ -206,7 +206,7 @@ const movieData = [{
 },
 {
     "year": 2013,
-    "title": "Star Trek Into Darkness",
+    "title": "Star Trek",
    
         "image_url": "https://ia.media-imdb.com/images/M/MV5BMTk2NzczOTgxNF5BMl5BanBnXkFtZTcwODQ5ODczOQ@@._V1_SX400_.jpg",
         "plot": "After the crew of the Enterprise find an unstoppable force of terror from within their own organization, Captain Kirk leads a manhunt to a war-zone world to capture a one man weapon of mass destruction.",
@@ -263,21 +263,7 @@ const movieData = [{
         ]
     
 },
-{
-    "year": 2013,
-    "title": "We Are What We Are",
-    
-        "image_url": "https://ia.media-imdb.com/images/M/MV5BMjI3NjI3NjAyN15BMl5BanBnXkFtZTgwODE3NzMxMDE@._V1_SX400_.jpg",
-        "plot": "The Parkers, a reclusive family who follow ancient customs, find their secret existence threatened as a torrential downpour moves into their area, forcing daughters Iris and Rose to assume responsibilities beyond those of a typical family.",
-        "rank": 21,
-        "running_time_secs": 6300,
-        "actors": [
-            "Bill Sage",
-            "Ambyr Childers",
-            "Julia Garner"
-        ]
-    
-},
+
 {
     "year": 2013,
     "title": "Iron Man 3",
@@ -295,7 +281,7 @@ const movieData = [{
 },
 {
     "year": 2014,
-    "title": "The Amazing Spider-Man 2",
+    "title": "Spider-Man 2",
    
         "image_url": "https://ia.media-imdb.com/images/M/MV5BMjE0MDAwNTUzNF5BMl5BanBnXkFtZTcwNDQ4NDYxOQ@@._V1_SX400_.jpg",
         "plot": "Spider-Man squares off against the Rhino and the powerful Electro while struggling to keep his promise to leave Gwen Stacey out of his dangerous life.",

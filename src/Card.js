@@ -40,10 +40,10 @@ function Card(props) {
           
           </h5>
 
-          {props.movieDes.length > 98 ? (
+          {props.movieDes.length > 63 ? (
             <p className="card-text">
               {" "}
-              {showDes ? props.movieDes.slice(0, 98) : props.movieDes}{" "}
+              {showDes ? props.movieDes.slice(0, 63) : props.movieDes}{" "}
               <span
                 className="des-read"
                 onClick={() => {
