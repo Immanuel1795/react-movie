@@ -11,6 +11,7 @@ function App() {
   const [movies, setMovies] = useState(movieData);
   const [display, setDisplay] = useState("none");
   const [searchTerm, setSearchTerm] = useState("");
+  
 
   function addMov(newMov) {
     swal({
@@ -85,6 +86,8 @@ function App() {
                     movieImg={movie.image_url}
                     onDelete={deleteMov}
                     id={index}
+                    
+
                   />
                 );
               })}

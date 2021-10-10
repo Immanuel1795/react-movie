@@ -37,7 +37,7 @@ function AddMovie(props) {
     <div className="formz">
       <form>
       <Box >
-        {/* <div class="mb-3">
+        <div class="mb-3">
           <label for="mname" class="form-label">
             Movie Name
           </label>
@@ -48,14 +48,14 @@ function AddMovie(props) {
             value={addMovie.title}
             onChange={handleChange}
           />
-        </div> */}
+        </div>
 
         
 
-        <div class="mb-3">
-        <TextField className="formText" fullWidth label="Movie Name" id="fullWidth"  name="title" value={addMovie.title}  onChange={handleChange} color="warning"/>
-        </div>
         {/* <div class="mb-3">
+        <TextField className="formText" fullWidth label="Movie Name" id="fullWidth"  name="title" value={addMovie.title}  onChange={handleChange} color="warning"/>
+        </div> */}
+        <div class="mb-3">
           <label for="murl" class="form-label">
             Image Url
           </label>
@@ -66,11 +66,11 @@ function AddMovie(props) {
             value={addMovie.image_url}
             onChange={handleChange}
           />
-        </div> */}
-        <div class="mb-3">
-        <TextField className="formText" fullWidth label="Image Url" id="fullWidth"  name="image_url" value={addMovie.image_url}  onChange={handleChange} color="warning" />
         </div>
         {/* <div class="mb-3">
+        <TextField className="formText" fullWidth label="Image Url" id="fullWidth"  name="image_url" value={addMovie.image_url}  onChange={handleChange} color="warning" />
+        </div> */}
+        <div class="mb-3">
           <label for="mdes" class="form-label">
             Description
           </label>
@@ -81,11 +81,11 @@ function AddMovie(props) {
             value={addMovie.plot}
             onChange={handleChange}
           />
-        </div> */}
-
-        <div class="mb-3">
-        <TextField className="formText" fullWidth label="Description" id="fullWidth"  name="plot" value={addMovie.plot}  onChange={handleChange} color="warning" />
         </div>
+
+        {/* <div class="mb-3">
+        <TextField className="formText" fullWidth label="Description" id="fullWidth"  name="plot" value={addMovie.plot}  onChange={handleChange} color="warning" />
+        </div> */}
       
         <Button variant="outlined" color="success" className="ml-2" onClick={submitMovie}> Submit</Button>
 

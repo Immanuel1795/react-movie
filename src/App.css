@@ -64,8 +64,13 @@
    display: none
 }
 
+.micons{
+    font-size: 30rem;
+}
 
-
+.card {
+    margin: 5px;
+}
 
 @media (min-width: 250px) and (max-width: 767px) {
     .card-img-top {
