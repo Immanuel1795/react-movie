@@ -12,8 +12,8 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 function Card(props) {
   const [showDes, setShowDes] = useState(true);
 
-  const [like, setLike] = useState(1);
-  const [disLike, setDisLike] = useState(1);
+  const [like, setLike] = useState(0);
+  const [disLike, setDisLike] = useState(0);
 
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 ">
