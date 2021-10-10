@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function AddMovie(props) {
   const [addMovie, setAddMovie] = useState({
@@ -32,9 +34,10 @@ function AddMovie(props) {
   }
 
   return (
-    <div>
+    <div className="formz">
       <form>
-        <div class="mb-3">
+      <Box >
+        {/* <div class="mb-3">
           <label for="mname" class="form-label">
             Movie Name
           </label>
@@ -45,8 +48,14 @@ function AddMovie(props) {
             value={addMovie.title}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
+
+        
+
         <div class="mb-3">
+        <TextField className="formText" fullWidth label="Movie Name" id="fullWidth"  name="title" value={addMovie.title}  onChange={handleChange} color="warning"/>
+        </div>
+        {/* <div class="mb-3">
           <label for="murl" class="form-label">
             Image Url
           </label>
@@ -57,8 +66,11 @@ function AddMovie(props) {
             value={addMovie.image_url}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div class="mb-3">
+        <TextField className="formText" fullWidth label="Image Url" id="fullWidth"  name="image_url" value={addMovie.image_url}  onChange={handleChange} color="warning" />
+        </div>
+        {/* <div class="mb-3">
           <label for="mdes" class="form-label">
             Description
           </label>
@@ -69,8 +81,11 @@ function AddMovie(props) {
             value={addMovie.plot}
             onChange={handleChange}
           />
+        </div> */}
+
+        <div class="mb-3">
+        <TextField className="formText" fullWidth label="Description" id="fullWidth"  name="plot" value={addMovie.plot}  onChange={handleChange} color="warning" />
         </div>
-        
       
         <Button variant="outlined" color="success" className="ml-2" onClick={submitMovie}> Submit</Button>
 
@@ -78,7 +93,12 @@ function AddMovie(props) {
           e.preventDefault()
           props.onClose();
         }}> Close</Button>
+
+</Box> 
       </form>
+    
+
+     
     </div>
   );
 }

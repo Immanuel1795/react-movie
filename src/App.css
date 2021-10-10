@@ -11,6 +11,15 @@
     color: whitesmoke;
  }
 
+ /* form{
+   
+    padding: 15px;
+    border-radius: 5px;
+    background: #8E0E00;
+    background: -webkit-linear-gradient(to right,#8E0E00, #1F1C18 );
+    background: linear-gradient(to bottom,#8E0E00 , #1F1C18 );
+ } */
+
  .navbar-brand { 
      color: whitesmoke;
  }
@@ -50,6 +59,12 @@
 .des-read:hover{
     cursor: pointer;
 }
+
+.formText {
+   display: none
+}
+
+
 
 
 @media (min-width: 250px) and (max-width: 767px) {
