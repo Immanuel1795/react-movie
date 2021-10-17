@@ -12,6 +12,7 @@ function AddMovie(props) {
     title: "",
     plot: "",
     image_url: "",
+    trailer: "",
   });
 
   function handleChange(event) {
@@ -32,7 +33,7 @@ function AddMovie(props) {
       title: "",
       plot: "",
       image_url: "",
-     
+     trailer: "",
     });
     event.preventDefault();
   }
@@ -85,6 +86,19 @@ function AddMovie(props) {
             class="form-control"
             name="plot"
             value={addMovie.plot}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="trailer" class="form-label">
+            Trailer
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="trailer"
+            value={addMovie.trailer}
             onChange={handleChange}
           />
         </div>

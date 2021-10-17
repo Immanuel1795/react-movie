@@ -22,6 +22,7 @@ function UpdateMovie() {
     title: movie[0].title,
     plot: movie[0].plot,
     image_url: movie[0].image_url,
+    trailer: movie[0].trailer
    
   });
 
@@ -47,7 +48,8 @@ function UpdateMovie() {
       return {...x,
       title: updateMovie.title,
       plot: updateMovie.plot,
-      image_url:updateMovie.image_url
+      image_url:updateMovie.image_url, 
+      trailer: updateMovie.trailer
     }
     }
     
@@ -117,6 +119,19 @@ function UpdateMovie() {
             class="form-control"
             name="plot"
             value={updateMovie.plot}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="trailer" class="form-label">
+            Trailer
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="trailer"
+            value={updateMovie.trailer}
             onChange={handleChange}
           />
         </div>

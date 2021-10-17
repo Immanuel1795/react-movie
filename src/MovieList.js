@@ -35,8 +35,8 @@ function MovieList() {
     });
     setMovies((prevMovie) => {
       // console.log({...newMov, id: movies.length+1})
-      updateStoredMovies([...prevMovie, {...newMov, id: movies.length}])
-      return [...prevMovie, {...newMov, id: movies.length}];
+      updateStoredMovies([...prevMovie, {...newMov, mid: movies.length}])
+      return [...prevMovie, {...newMov, mid: movies.length}];
     });
   }
 
