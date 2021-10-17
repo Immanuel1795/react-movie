@@ -22,18 +22,18 @@ function Navbar() {
               
                 <li className="nav-item">
                 <Link to="/"  className="nav-link active">
-                  Home
+                  About
                   </Link>
                    
                   
                 </li>
               
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link to="/about" className="nav-link ">
                   About
                 </Link>
-              </li>
+              </li> */}
 
               <li className="nav-item">
                 <Link to="/movies" className="nav-link">
