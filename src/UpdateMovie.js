@@ -65,6 +65,7 @@ function UpdateMovie() {
       title: "",
       plot: "",
       image_url: "",
+      trailer:""
     });
     event.preventDefault();
   }
