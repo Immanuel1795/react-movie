@@ -1,24 +1,35 @@
-import React from "react";
-import { useState } from "react";
-import Button from '@mui/material/Button';
+import React, { useState } from 'react'
+import Button from "@mui/material/Button";
+import { useParams } from 'react-router'
+import {  useHistory } from 'react-router-dom'
+
+
+import { getStorage, updateStoredMovies } from "./getFromStorage";
+
 import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
 
-function AddMovie(props) {
+function UpdateMovie() {
 
-
+  const history = useHistory();
+  const {id} = useParams();
   
-  const [addMovie, setAddMovie] = useState({
-    title: "",
-    plot: "",
-    image_url: "",
+  
+  
+
+  let movie = getStorage("movies").filter(mov=> +mov.mid === +id);
+ 
+  const [updateMovie, setUpdateMovie] = useState({
+    title: movie[0].title,
+    plot: movie[0].plot,
+    image_url: movie[0].image_url,
+   
   });
 
   function handleChange(event) {
     const { name, value } = event.target;
     
 
-    setAddMovie((prevValue) => {
+    setUpdateMovie((prevValue) => {
       return {
         ...prevValue,
         [name]: value,
@@ -26,19 +37,40 @@ function AddMovie(props) {
     });
   }
 
-  function submitMovie(event) {
-    props.onAdd(addMovie);
-    setAddMovie({
+  function updateMovies(event) {
+   
+   
+  //  updateStoredMovies( ...movie );
+
+   const updatedData = getStorage("movies").map(x=>{
+    if (+x.mid === +id){
+      return {...x,
+      title: updateMovie.title,
+      plot: updateMovie.plot,
+      image_url:updateMovie.image_url
+    }
+    }
+    
+    return x;
+   })
+
+   console.log(updatedData)
+
+   updateStoredMovies( updatedData);
+
+
+    setUpdateMovie({
       title: "",
       plot: "",
       image_url: "",
-     
     });
     event.preventDefault();
   }
 
+
   return (
-    <div className="formz">
+    <div>
+      <div className="formz">
       <form>
       <Box >
 
@@ -51,7 +83,7 @@ function AddMovie(props) {
             type="text"
             class="form-control"
             name="title"
-            value={addMovie.title}
+            value={updateMovie.title}
             onChange={handleChange}
           />
         </div>
@@ -69,7 +101,7 @@ function AddMovie(props) {
             type="text"
             class="form-control"
             name="image_url"
-            value={addMovie.image_url}
+            value={updateMovie.image_url}
             onChange={handleChange}
           />
         </div>
@@ -84,7 +116,7 @@ function AddMovie(props) {
             type="text"
             class="form-control"
             name="plot"
-            value={addMovie.plot}
+            value={updateMovie.plot}
             onChange={handleChange}
           />
         </div>
@@ -94,12 +126,16 @@ function AddMovie(props) {
         </div> */}
       
        
-        <Button variant="outlined" color="success" className="ml-2" onClick={submitMovie}> Submit</Button>
+        <Button variant="outlined" color="success" className="ml-2" onClick={updateMovies}> Update</Button>
 
-        <Button variant="outlined" color="error" className="ml-2" onClick={(e)=>{
-          e.preventDefault()
-          props.onClose();
-        }}> Close</Button>
+        <Button
+            variant="contained"
+            className="mt-auto"
+            color="primary"
+            onClick={()=>history.goBack()}
+          >
+            Back
+          </Button>
        
        
 
@@ -112,7 +148,9 @@ function AddMovie(props) {
 
      
     </div>
-  );
+      
+    </div>
+  )
 }
 
-export default AddMovie;
+export default UpdateMovie

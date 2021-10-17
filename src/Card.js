@@ -5,6 +5,7 @@ import Badge from '@mui/material/Badge';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 // import DeleteIcon from '@mui/icons-material/Delete';
+import {  useHistory } from 'react-router-dom'
 
 
 
@@ -15,6 +16,13 @@ function Card(props) {
   const [like, setLike] = useState(0);
   const [disLike, setDisLike] = useState(0);
 
+  const history = useHistory();
+
+  function updateMov(){
+    history.push(`/update_movie/${props.id}`)
+    
+
+  }
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 ">
       <div className="card">
@@ -57,6 +65,25 @@ function Card(props) {
             <p className="card-text"> {props.movieDes}</p>
           )}
 
+
+          <Button
+            variant="contained"
+            className="mt-auto"
+            color="primary"
+            onClick={()=>history.push(`/movies/${props.id}`)}
+          >
+            Movie Details
+          </Button>
+
+          <Button
+            variant="contained"
+            className="mt-auto"
+            color="warning"
+            onClick={updateMov}
+          >
+            Update movie
+          </Button>
+
          
           <Button
             variant="contained"
@@ -68,6 +95,8 @@ function Card(props) {
           >
             Delete movie
           </Button>
+
+          
         </div>
       </div>
     </div>
