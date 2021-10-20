@@ -1,10 +1,9 @@
 
 import movieData from "./movie";
 import Card from "./Card";
-import { useState } from "react";
-import AddMovie from "./AddMovie";
-import Button from '@mui/material/Button';
-import { getStorage, updateStoredMovies } from "./getFromStorage";
+import { useContext, useState } from "react";
+import ThemeContext from "./theme";
+import { updateStoredMovies } from "./getFromStorage";
 
 
 import swal from "sweetalert";
@@ -13,32 +12,16 @@ import swal from "sweetalert";
 
 updateStoredMovies(movieData)
 
-function MovieList() {
+function MovieList({movies, setMovies}) {
 
-    const [movies, setMovies] = useState(
-        getStorage("movies")
-    );
+    
 //   const [movies, setMovies] = useState(movieData);
-  const [display, setDisplay] = useState("none");
+
   const [searchTerm, setSearchTerm] = useState("");
   
+  const theme  = useContext(ThemeContext)
  
   
-
-  function addMov(newMov) {
-   
-    swal({
-      title: "Movie has been added successfully",
-      text: "You clicked the button!",
-      icon: "success",
-      button: "Aww yiss!",
-    });
-    setMovies((prevMovie) => {
-      // console.log({...newMov, id: movies.length+1})
-      updateStoredMovies([...prevMovie, {...newMov, mid: movies.length}])
-      return [...prevMovie, {...newMov, mid: movies.length}];
-    });
-  }
 
   function deleteMov(id) {
     swal({
@@ -65,25 +48,17 @@ function MovieList() {
     });
   }
 
-  function showForm() {
-    setDisplay("");
-  }
+  
 
   
 
   return (
     
     <div>
-      <div className="container-fluid">
+      <div className="container-fluid" style={theme}>
 
-      <Button variant="contained" color="success" onClick={showForm} className="d-flex ">Add Movie</Button> 
       
-      
-      
-        <div className="top-section" style={{ display: display }}>
-          <AddMovie onAdd={addMov} onClose={() => setDisplay("none") } />
-          
-        </div>
+    
 
       
 
@@ -119,6 +94,7 @@ function MovieList() {
                     movieImg={movie.image_url}
                     onDelete={deleteMov}
                     id={movie.mid}
+                    theme={theme}
                     
                     // id={index}
                    

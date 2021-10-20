@@ -1,14 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
  }
 
- body, .card{
-    background: #8E0E00;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1F1C18, #8E0E00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: whitesmoke;
+ /* body, .card{
+    background: #8E0E00; 
+    background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00); 
+    background: linear-gradient(to right, #1F1C18, #8E0E00); 
+   
+   
+
+ } */
+
+ /* body, .card{
+    background-color: #cc8800;
+background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png");
+ } */
+
+ body, .card {
+   
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+ }
+
+
+ .mov-trailer{
+    margin: 20px;
+ }
+
+ .formz{
+    margin: 10px;
+    
  }
 
  /* form{
@@ -24,7 +52,28 @@
      color: whitesmoke;
  }
 
- 
+ .navbar-brand-name{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 35px;
+ }
+
+ .nav-text{
+    font-family: 'Roboto Slab', serif;
+ }
+
+ .card-title{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+ }
+
+ .card-text{
+    font-family: 'Comfortaa', cursive;
+    font-size: large;
+ }
+
+ .dddddd{
+     background-color: white;
+ }
  
 
 .card-img-top {
@@ -70,7 +119,10 @@
 
 .card {
     margin: 5px;
+    
 }
+
+
 
 @media (min-width: 250px) and (max-width: 767px) {
     .card-img-top {

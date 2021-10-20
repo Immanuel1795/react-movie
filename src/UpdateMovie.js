@@ -1,17 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from "@mui/material/Button";
 import { useParams } from 'react-router'
 import {  useHistory } from 'react-router-dom'
+import DoneIcon from '@mui/icons-material/Done';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ThemeContext from "./theme";
+
+
 
 
 import { getStorage, updateStoredMovies } from "./getFromStorage";
 
 import Box from '@mui/material/Box';
 
-function UpdateMovie() {
+function UpdateMovie({setMovies}) {
 
   const history = useHistory();
   const {id} = useParams();
+  const theme  = useContext(ThemeContext)
   
   
   
@@ -40,8 +46,7 @@ function UpdateMovie() {
 
   function updateMovies(event) {
    
-   
-  //  updateStoredMovies( ...movie );
+
 
    const updatedData = getStorage("movies").map(x=>{
     if (+x.mid === +id){
@@ -55,10 +60,19 @@ function UpdateMovie() {
     
     return x;
    })
+   setMovies(updatedData)
+  updateStoredMovies( updatedData);
+  history.push("/movies");
 
-   console.log(updatedData)
 
-   updateStoredMovies( updatedData);
+  // let updatedMov = [...movies]
+  // updatedMov[id] = updateMovie
+  // console.log(updatedMov)
+  // setMovies(updatedMov)
+  // updateStoredMovies( updatedMov );
+
+
+  
 
 
     setUpdateMovie({
@@ -72,7 +86,7 @@ function UpdateMovie() {
 
 
   return (
-    <div>
+    <div style={theme}>
       <div className="formz">
       <form>
       <Box >
@@ -142,11 +156,16 @@ function UpdateMovie() {
         </div> */}
       
        
-        <Button variant="outlined" color="success" className="ml-2" onClick={updateMovies}> Update</Button>
+       
+
+        <Button variant="contained" endIcon={<DoneIcon /> } onClick={updateMovies}>
+  Update
+</Button>
 
         <Button
+           startIcon={<ArrowBackIosIcon />}
             variant="contained"
-            className="mt-auto"
+            className="mt-auto ml-2"
             color="primary"
             onClick={()=>history.goBack()}
           >

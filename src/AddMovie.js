@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
+import swal from "sweetalert";
+import { updateStoredMovies } from "./getFromStorage";
+import {  useHistory } from 'react-router-dom'
+import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ThemeContext from "./theme";
 
-function AddMovie(props) {
 
+function AddMovie({movies, setMovies, props}) {
+  const history = useHistory();
+  const theme  = useContext(ThemeContext)
+
+  function onAdd(newMov) {
+   
+    swal({
+      title: "Movie has been added successfully",
+      text: "You clicked the button!",
+      icon: "success",
+      button: "Aww yiss!",
+    });
+    setMovies((prevMovie) => {
+      // console.log({...newMov, id: movies.length+1})
+      updateStoredMovies([...prevMovie, {...newMov, mid: movies.length}])
+      return [...prevMovie, {...newMov, mid: movies.length}];
+    });
+
+    history.push(`/movies`)
+  }
 
   
   const [addMovie, setAddMovie] = useState({
@@ -28,7 +53,7 @@ function AddMovie(props) {
   }
 
   function submitMovie(event) {
-    props.onAdd(addMovie);
+    onAdd(addMovie);
     setAddMovie({
       title: "",
       plot: "",
@@ -39,7 +64,7 @@ function AddMovie(props) {
   }
 
   return (
-    <div className="formz">
+    <div className="formz" style={theme}>
       <form>
       <Box >
 
@@ -108,12 +133,21 @@ function AddMovie(props) {
         </div> */}
       
        
-        <Button variant="outlined" color="success" className="ml-2" onClick={submitMovie}> Submit</Button>
+       
 
-        <Button variant="outlined" color="error" className="ml-2" onClick={(e)=>{
-          e.preventDefault()
-          props.onClose();
-        }}> Close</Button>
+        <Button variant="contained" endIcon={<AddIcon /> }  onClick={submitMovie}>
+  Add
+</Button>
+
+        <Button
+          startIcon={<ArrowBackIosIcon />}
+            variant="contained"
+            className="mt-auto ml-2"
+            color="primary"
+            onClick={()=>history.goBack()}
+          >
+            Back
+          </Button>
        
        
 
