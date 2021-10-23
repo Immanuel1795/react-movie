@@ -25,7 +25,7 @@ function Header(props) {
              <div style={theme}>
             <Navbar  expand="lg" style={theme}>
            
-    <Navbar.Brand style={theme} className="navbar-brand-name">Movie Hub</Navbar.Brand>
+    <Navbar.Brand style={theme} className="navbar-brand-name">Popcorn Time</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" className="dddddd"/>
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
