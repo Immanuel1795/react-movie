@@ -5,6 +5,7 @@ import {  useHistory } from 'react-router-dom'
 import DoneIcon from '@mui/icons-material/Done';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ThemeContext from "./theme";
+import swal from "sweetalert";
 
 
 
@@ -98,7 +99,13 @@ function UpdateMovie() {
     headers: {"Content-type": "application/json"},
   })
   .then(data=>data.json())
-  .then(data=>history.push(`/movies`))
+  .then(data=>{
+    swal({
+      title: "Movie has been updated successfully",
+      icon: "success",
+      button: "Aww yiss!",
+    });
+    history.push(`/movies`)})
 
   
 

@@ -45,9 +45,7 @@ useEffect(getMovies, [])
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal("Movie has been removed successfully", {
-          icon: "success",
-        });
+        
         // setMovies((prevMovie) => {  
 
         //     updateStoredMovies(
@@ -63,8 +61,14 @@ useEffect(getMovies, [])
           method: "DELETE"
         })
         .then((data)=>data.json())
-        .then((data)=>getMovies())
+        .then((data)=>{
+          swal("Movie has been removed successfully", {
+            icon: "success",
+          });
+          getMovies()})
       }
+
+      
     });
   }
 

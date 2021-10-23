@@ -17,12 +17,7 @@ function AddMovie() {
 
   function onAdd(newMov) {
    
-    swal({
-      title: "Movie has been added successfully",
-      text: "You clicked the button!",
-      icon: "success",
-      button: "Aww yiss!",
-    });
+    
     // setMovies((prevMovie) => {
     //   // console.log({...newMov, id: movies.length+1})
     //   updateStoredMovies([...prevMovie, {...newMov, mid: movies.length}])
@@ -35,7 +30,14 @@ function AddMovie() {
       headers: {"Content-type": "application/json"},
     })
     .then(data=>data.json())
-    .then(data=>history.push(`/movies`))
+    .then(data=>{
+      swal({
+        title: "Movie has been added successfully",
+        icon: "success",
+        button: "Aww yiss!",
+      });
+      history.push(`/movies`)
+    })
 
     
   }
