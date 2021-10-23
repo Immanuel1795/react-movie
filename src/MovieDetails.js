@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import Button from "@mui/material/Button";
 import {  useHistory } from 'react-router-dom'
-import { getStorage } from "./getFromStorage";
+// import { getStorage } from "./getFromStorage";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ThemeContext from "./theme";
 
 function MovieDetails() {
+
+  const [movies, setMovies] = useState({})
 
     const {id} = useParams();
     const history = useHistory();
@@ -14,7 +16,13 @@ function MovieDetails() {
     const theme  = useContext(ThemeContext)
 
     
-    const movie = getStorage("movies").filter(mov=> +mov.mid === +id);
+
+    
+    useEffect(()=>{
+      fetch(`https://6173de3a110a740017223189.mockapi.io/movies/${id}`)
+      .then(data => data.json())
+      .then((movies)=>setMovies(movies));
+    }, [])
     
    
     
@@ -22,8 +30,8 @@ function MovieDetails() {
         <div className="mov-trailer" style={theme}>
 
            
-            <iframe width="100%" height="440" src={movie[0].trailer} title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h5>{movie[0].plot}</h5>
+            <iframe width="100%" height="440" src={movies.trailer} title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h5>{movies.plot}</h5>
             <Button
            startIcon={<ArrowBackIosIcon />}
             variant="contained"

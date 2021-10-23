@@ -4,14 +4,14 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 import swal from "sweetalert";
-import { updateStoredMovies } from "./getFromStorage";
+// import { updateStoredMovies } from "./getFromStorage";
 import {  useHistory } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ThemeContext from "./theme";
 
 
-function AddMovie({movies, setMovies, props}) {
+function AddMovie() {
   const history = useHistory();
   const theme  = useContext(ThemeContext)
 
@@ -23,13 +23,21 @@ function AddMovie({movies, setMovies, props}) {
       icon: "success",
       button: "Aww yiss!",
     });
-    setMovies((prevMovie) => {
-      // console.log({...newMov, id: movies.length+1})
-      updateStoredMovies([...prevMovie, {...newMov, mid: movies.length}])
-      return [...prevMovie, {...newMov, mid: movies.length}];
-    });
+    // setMovies((prevMovie) => {
+    //   // console.log({...newMov, id: movies.length+1})
+    //   updateStoredMovies([...prevMovie, {...newMov, mid: movies.length}])
+    //   return [...prevMovie, {...newMov, mid: movies.length}];
+    // });
 
-    history.push(`/movies`)
+    fetch("https://6173de3a110a740017223189.mockapi.io/movies/",{
+      method: "POST",
+      body: JSON.stringify(newMov),
+      headers: {"Content-type": "application/json"},
+    })
+    .then(data=>data.json())
+    .then(data=>history.push(`/movies`))
+
+    
   }
 
   

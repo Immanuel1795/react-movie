@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect} from 'react'
 import Button from "@mui/material/Button";
 import { useParams } from 'react-router'
 import {  useHistory } from 'react-router-dom'
@@ -9,28 +9,49 @@ import ThemeContext from "./theme";
 
 
 
-import { getStorage, updateStoredMovies } from "./getFromStorage";
+// import { getStorage, updateStoredMovies } from "./getFromStorage";
+
+
 
 import Box from '@mui/material/Box';
 
-function UpdateMovie({setMovies}) {
+function UpdateMovie() {
 
   const history = useHistory();
   const {id} = useParams();
   const theme  = useContext(ThemeContext)
-  
-  
+
   
 
-  let movie = getStorage("movies").filter(mov=> +mov.mid === +id);
- 
+  const getMovies = ()=>{
+    fetch("https://6173de3a110a740017223189.mockapi.io/movies/" + id)
+    .then(data => data.json())
+    .then((movies)=>{
+      setUpdateMovie({
+        title: movies.title,
+        plot: movies.plot,
+        image_url:movies.image_url,
+        trailer: movies.trailer
+       
+      })
+    });
+  }
+  
+  
+  
+   
+
+  // let movie = getStorage("movies").filter(mov=> +mov.mid === +id);
+  
   const [updateMovie, setUpdateMovie] = useState({
-    title: movie[0].title,
-    plot: movie[0].plot,
-    image_url: movie[0].image_url,
-    trailer: movie[0].trailer
+    title: "",
+    plot: "",
+    image_url:"",
+    trailer: ""
    
   });
+
+
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -44,25 +65,26 @@ function UpdateMovie({setMovies}) {
     });
   }
 
+  useEffect(getMovies, [])
   function updateMovies(event) {
    
 
 
-   const updatedData = getStorage("movies").map(x=>{
-    if (+x.mid === +id){
-      return {...x,
-      title: updateMovie.title,
-      plot: updateMovie.plot,
-      image_url:updateMovie.image_url, 
-      trailer: updateMovie.trailer
-    }
-    }
+  //  const updatedData = getStorage("movies").map(x=>{
+  //   if (+x.mid === +id){
+  //     return {...x,
+  //     title: updateMovie.title,
+  //     plot: updateMovie.plot,
+  //     image_url:updateMovie.image_url, 
+  //     trailer: updateMovie.trailer
+  //   }
+  //   }
     
-    return x;
-   })
-   setMovies(updatedData)
-  updateStoredMovies( updatedData);
-  history.push("/movies");
+  //   return x;
+  //  })
+  //  setMovies(updatedData)
+  // updateStoredMovies( updatedData);
+ 
 
 
   // let updatedMov = [...movies]
@@ -70,7 +92,13 @@ function UpdateMovie({setMovies}) {
   // console.log(updatedMov)
   // setMovies(updatedMov)
   // updateStoredMovies( updatedMov );
-
+  fetch("https://6173de3a110a740017223189.mockapi.io/movies/" + id,{
+    method: "PUT",
+    body: JSON.stringify(updateMovie),
+    headers: {"Content-type": "application/json"},
+  })
+  .then(data=>data.json())
+  .then(data=>history.push(`/movies`))
 
   
 
@@ -83,6 +111,8 @@ function UpdateMovie({setMovies}) {
     });
     event.preventDefault();
   }
+
+
 
 
   return (

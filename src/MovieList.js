@@ -1,21 +1,35 @@
 
-import movieData from "./movie";
+// import movieData from "./movie";
 import Card from "./Card";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ThemeContext from "./theme";
-import { updateStoredMovies } from "./getFromStorage";
+// import { updateStoredMovies } from "./getFromStorage";
 
 
 import swal from "sweetalert";
 
 
 
-updateStoredMovies(movieData)
 
-function MovieList({movies, setMovies}) {
+
+function MovieList() {
 
     
 //   const [movies, setMovies] = useState(movieData);
+
+const [movies, setMovies] = useState([]);
+
+
+
+const getMovies = ()=>{
+  fetch("https://6173de3a110a740017223189.mockapi.io/movies")
+  .then(data => data.json())
+  .then((movies)=>setMovies(movies));
+}
+
+useEffect(getMovies, [])
+
+
 
   const [searchTerm, setSearchTerm] = useState("");
   
@@ -34,16 +48,22 @@ function MovieList({movies, setMovies}) {
         swal("Movie has been removed successfully", {
           icon: "success",
         });
-        setMovies((prevMovie) => {  
+        // setMovies((prevMovie) => {  
 
-            updateStoredMovies(
-                 prevMovie.filter((x,index)=>x.mid !== id)
-            )
+        //     updateStoredMovies(
+        //          prevMovie.filter((x,index)=>x.mid !== id)
+        //     )
          
-          return prevMovie.filter((x, index) => {
-            return x.mid !== id;
-          });
-        });
+        //   return prevMovie.filter((x, index) => {
+        //     return x.mid !== id;
+        //   });
+        // });
+
+        fetch("https://6173de3a110a740017223189.mockapi.io/movies/" + id,{
+          method: "DELETE"
+        })
+        .then((data)=>data.json())
+        .then((data)=>getMovies())
       }
     });
   }
@@ -85,7 +105,7 @@ function MovieList({movies, setMovies}) {
                   .toLocaleLowerCase()
                   .includes(searchTerm.toLocaleLowerCase())
               )
-              .map((movie, index) => {
+              .map((movie) => {
                 
                 return (
                   <Card
