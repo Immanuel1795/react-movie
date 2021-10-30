@@ -1,12 +1,18 @@
 
 // import movieData from "./movie";
-import Card from "./Card";
-import { useContext, useEffect, useState } from "react";
-import ThemeContext from "./theme";
+
+import {useEffect, useState } from "react";
+
 // import { updateStoredMovies } from "./getFromStorage";
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+
+
+
 
 
 import swal from "sweetalert";
+import MovieCard from "./MovieCard";
 
 
 
@@ -33,7 +39,7 @@ useEffect(getMovies, [])
 
   const [searchTerm, setSearchTerm] = useState("");
   
-  const theme  = useContext(ThemeContext)
+  
  
   
 
@@ -78,8 +84,8 @@ useEffect(getMovies, [])
 
   return (
     
-    <div>
-      <div className="container-fluid" style={theme}>
+    < >
+     
 
       
     
@@ -101,8 +107,8 @@ useEffect(getMovies, [])
         
 
         <div className="card-section">
-          <div class="row">
-        
+        <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={1}>
             {movies
               .filter((mov) =>
                 mov.title
@@ -112,13 +118,13 @@ useEffect(getMovies, [])
               .map((movie) => {
                 
                 return (
-                  <Card
+                  <MovieCard
                     movieName={movie.title}
                     movieDes={movie.plot}
                     movieImg={movie.image_url}
                     onDelete={deleteMov}
                     id={movie.mid}
-                    theme={theme}
+                  
                     
                     // id={index}
                    
@@ -126,11 +132,17 @@ useEffect(getMovies, [])
                   />
                 );
               })}
-          </div>
+          
+</Grid>
+              </Box>
         </div>
-      </div>
+
+
+
+        
+     
       
-    </div>
+    </>
   );
 }
 

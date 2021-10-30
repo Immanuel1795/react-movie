@@ -1,11 +1,12 @@
-import React, { useContext, useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import Button from "@mui/material/Button";
 import { useParams } from 'react-router'
 import {  useHistory } from 'react-router-dom'
 import DoneIcon from '@mui/icons-material/Done';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ThemeContext from "./theme";
+
 import swal from "sweetalert";
+
 
 
 
@@ -20,7 +21,7 @@ function UpdateMovie() {
 
   const history = useHistory();
   const {id} = useParams();
-  const theme  = useContext(ThemeContext)
+
 
   
 
@@ -123,7 +124,7 @@ function UpdateMovie() {
 
 
   return (
-    <div style={theme}>
+   
       <div className="formz">
       <form>
       <Box >
@@ -221,7 +222,7 @@ function UpdateMovie() {
      
     </div>
       
-    </div>
+   
   )
 }
 

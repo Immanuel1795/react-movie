@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -8,12 +8,13 @@ import swal from "sweetalert";
 import {  useHistory } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ThemeContext from "./theme";
+
+
 
 
 function AddMovie() {
   const history = useHistory();
-  const theme  = useContext(ThemeContext)
+  
 
   function onAdd(newMov) {
    
@@ -74,7 +75,10 @@ function AddMovie() {
   }
 
   return (
-    <div className="formz" style={theme}>
+    
+    
+   
+    <div className="formz" >
       <form>
       <Box >
 
@@ -167,9 +171,10 @@ function AddMovie() {
 </Box> 
       </form>
     
-
+      </div>
      
-    </div>
+   
+   
   );
 }
 

@@ -1,4 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
+
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+
+import Typography from '@mui/material/Typography';
+
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
@@ -11,11 +20,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import Grid from '@mui/material/Grid';
 
+function MovieCard(props) {
 
-function Card(props) {
-  const [showDes, setShowDes] = useState(true);
+    const [showDes, setShowDes] = useState(true);
 
   const [like, setLike] = useState(0);
   const [disLike, setDisLike] = useState(0);
@@ -25,19 +33,18 @@ function Card(props) {
   function updateMov() {
     history.push(`/update_movie/${props.id}`);
   }
-  return (
-   
-    <Grid item xl={3} md={4} xs={12}>
-      <div className="card " style={{...props.theme, border:props.theme ? "0.1px solid white": null}}>
-        <img
-          src={props.movieImg}
-          className="card-img-top img-fluid"
-          alt={props.movieName}
-        />
-        <div className="card-body d-flex flex-column">
-          <h5 className="card-title">
-            {props.movieName}
-            <IconButton
+    return (
+        <Grid item lg={3} md={4} sm={6}>
+            <Card sx={{ maxWidth: 345, justifyContent: 'center'}}>
+      <CardMedia
+        component="img"
+        height="250"
+        image={props.movieImg}
+        alt={props.movieName}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div"  sx={{ fontFamily: 'Bebas Neue',  fontSize: "28px"}} color="text.secondary">
+        {props.movieName} <IconButton
               onClick={() => {
                 setLike(like + 1);
               }}
@@ -58,12 +65,9 @@ function Card(props) {
                 <ThumbDownAltIcon />
               </Badge>
             </IconButton>
-          </h5>
-
-          {props.movieDes.length > 55 ? (
-            <p className="card-text">
-             
-              {showDes ? props.movieDes.slice(0, 55) : props.movieDes}{" "}
+        </Typography>
+        <Typography variant="body2" color="text.secondary"sx={{ fontFamily: 'Comfortaa',  fontSize: "large"}}>
+        {showDes ? `${props.movieDes.slice(0, 45)} ...` : props.movieDes}
               <span
                 className="des-read"
                 onClick={() => {
@@ -80,13 +84,10 @@ function Card(props) {
                   </IconButton>
                 )}
               </span>
-            </p>
-          ) : (
-            <p className="card-text"> {props.movieDes}</p>
-          )}
-
-          <div className=" d-flex flex-row justify-content-center">
-            <IconButton
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ justifyContent: 'center'}}>
+      <IconButton
               color="primary"
               aria-label="details"
               size="large"
@@ -114,11 +115,10 @@ function Card(props) {
             >
               <DeleteIcon fontSize="inherit" />
             </IconButton>
-          </div>
-        </div>
-      </div>
-      </Grid>
-  );
+      </CardActions>
+    </Card>
+        </Grid>
+    )
 }
 
-export default Card;
+export default MovieCard

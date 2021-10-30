@@ -26,10 +26,7 @@
 background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png");
  } */
 
- body, .card {
-   
-    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
- }
+ 
 
 
  .mov-trailer{
@@ -41,14 +38,16 @@ background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-
     
  }
 
- /* form{
-   
-    padding: 15px;
-    border-radius: 5px;
-    background: #8E0E00;
-    background: -webkit-linear-gradient(to right,#8E0E00, #1F1C18 );
-    background: linear-gradient(to bottom,#8E0E00 , #1F1C18 );
- } */
+ .nav-links > a {
+     color: white;
+     text-decoration: none;
+ }
+
+ .nav-text{
+     color: white;
+ }
+
+
 
  .navbar-brand { 
      color: whitesmoke;
@@ -61,6 +60,7 @@ background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-
 
  .nav-text{
     font-family: 'Roboto Slab', serif;
+    font-size: 19px;
  }
 
  .card-title{
@@ -73,9 +73,7 @@ background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-
     font-size: large;
  }
 
- .dddddd{
-     background-color: white;
- }
+ 
  
 
 .card-img-top {
@@ -139,11 +137,4 @@ background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-
 
 
 
-@media (min-width: 250px) and (max-width: 767px) {
-    .card-img-top {
-    
-    height: 200px;
-        
-       
-    }
-} 
+
