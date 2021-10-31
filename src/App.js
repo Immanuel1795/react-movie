@@ -37,7 +37,7 @@ function App() {
 
 
   const [darkMode, setDarkMode] = useState(false);
-  console.log(themes[0].light)
+ 
   
 
   const darkTheme = createTheme({

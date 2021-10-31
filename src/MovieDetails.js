@@ -24,7 +24,7 @@ function MovieDetails() {
       fetch(`https://6173de3a110a740017223189.mockapi.io/movies/${id}`)
       .then(data => data.json())
       .then((movies)=>setMovies(movies));
-    }, [])
+    }, [id])
     
    
     

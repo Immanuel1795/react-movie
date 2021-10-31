@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import Button from "@mui/material/Button";
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -20,6 +20,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import BasicRating from './BasicRating';
 
 function MovieCard(props) {
 
@@ -40,16 +41,22 @@ function MovieCard(props) {
         alignItems="center"
         justify="center"
         >
-            <Card sx={{ maxWidth: 345}}>
+            <Card sx={{ maxWidth: 345, margin:"7px"}}>
       <CardMedia
         component="img"
         height="250"
         image={props.movieImg}
         alt={props.movieName}
       />
-      <CardContent>
+      <CardContent >
         <Typography gutterBottom variant="h5" component="div"  sx={{ fontFamily: 'Bebas Neue',  fontSize: "28px"}} color="text.secondary">
-        {props.movieName} <IconButton
+        {props.movieName} 
+
+       
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+        <BasicRating rating = {props.rating} id={props.id} title={props.title} plot={props.plot} image_url={props.image_url} trailer={props.trailer} />
+        <div >
+        <IconButton
               onClick={() => {
                 setLike(like + 1);
               }}
@@ -70,7 +77,10 @@ function MovieCard(props) {
                 <ThumbDownAltIcon />
               </Badge>
             </IconButton>
+            </div>
+            </div>
         </Typography>
+        
         <Typography variant="body2" color="text.secondary"sx={{ fontFamily: 'Comfortaa',  fontSize: "large"}}>
         {showDes ? `${props.movieDes.slice(0, 45)} ...` : props.movieDes}
               <span
@@ -92,34 +102,43 @@ function MovieCard(props) {
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: 'center'}}>
-      <IconButton
-              color="primary"
-              aria-label="details"
-              size="large"
-              onClick={() => history.push(`/movies/${props.id}`)}
-            >
-              <DetailsIcon fontSize="inherit" />
-            </IconButton>
 
-            <IconButton
-              color="warning"
-              aria-label="details"
-              size="large"
-              onClick={updateMov}
-            >
-              <EditIcon fontSize="inherit" />
-            </IconButton>
+      
+            <Button
+           startIcon={<DetailsIcon />}
+            variant="contained"
+            className="mt-auto ml-2"
+            color="primary"
+            onClick={() => history.push(`/movies/${props.id}`)}
+          >
+            Info
+          </Button>
+            
 
-            <IconButton
-              color="error"
-              aria-label="delete"
-              size="large"
-              onClick={() => {
+            
+
+            <Button
+           startIcon={<EditIcon />}
+            variant="contained"
+            className="mt-auto ml-2"
+            color="warning"
+            onClick={updateMov}
+          >
+            Edit
+          </Button>
+
+              
+            <Button
+           startIcon={<DeleteIcon />}
+            variant="contained"
+            className="mt-auto ml-2"
+            color="error"
+            onClick={() => {
                 props.onDelete(props.id);
               }}
-            >
-              <DeleteIcon fontSize="inherit" />
-            </IconButton>
+          >
+            Delete
+          </Button>
       </CardActions>
     </Card>
         </Grid>

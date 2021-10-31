@@ -17,8 +17,9 @@ import Box from '@mui/material/Box';
 const updateMovieValidationSchema  =  yup.object({
   title: yup.string().max(20, "Provide a smaller title 😁").required("The movie will definitely have a name 😉"),
   plot: yup.string().min(60, "Provide a bigger description 😁").required("Feel free to enter your own story 😜"),
-  image_url: yup.string().matches(/https?:\/\/w{0,3}\w*?\.(\w*?\.)?\w{2,3}\S*|www\.(\w*?\.)?\w*?\.\w{2,3}\S*|(\w*?\.)?\w*?\.\w{2,3}[\/\?]\S*/, "Invalid Url🙅").required("Think of a adding a pic 😜"),
-  trailer: yup.string().matches(/https?:\/\/w{0,3}\w*?\.(\w*?\.)?\w{2,3}\S*|www\.(\w*?\.)?\w*?\.\w{2,3}\S*|(\w*?\.)?\w*?\.\w{2,3}[\/\?]\S*/, "Invalid Url 🙅‍♂️").required("Why not give it a trailer 😜")
+  image_url: yup.string().url("Invalid Url🙅").required("Think of a adding a pic 😜"),
+  trailer: yup.string().url("Invalid Url 🙅‍♂️").required("Why not give it a trailer 😜"),
+  rating: yup.number().required("Give your thoughts 😜").min(1,"OOPS, Not less than 1 😁").max(5, "OOPS, Max is 5 😁")
 })
 
 function UpdateMovie() {
@@ -30,7 +31,8 @@ function UpdateMovie() {
     title: "",
     plot: "",
     image_url:"",
-    trailer: ""
+    trailer: "",
+    rating: ""
    
   });
 
@@ -42,8 +44,8 @@ function UpdateMovie() {
         title: movies.title,
         plot: movies.plot,
         image_url:movies.image_url,
-        trailer: movies.trailer
-       
+        trailer: movies.trailer,
+        rating: movies.rating
       })
     });
   }
@@ -60,7 +62,7 @@ function UpdateMovie() {
 
 })
  
-useEffect(getMovies, [])
+useEffect(getMovies, [id])
 
 
   function updateMovies(updateMovie) {
@@ -152,7 +154,23 @@ useEffect(getMovies, [])
         helperText={ formik.touched.trailer && formik.errors.trailer}
 
         />     
-        </div>     
+        </div>
+
+        <div class="mb-3">
+        <TextField 
+        className="formText" 
+        fullWidth label="Movie Rating" 
+        id="rating"  
+        name="rating" 
+        value={formik.values.rating}  
+        onChange={formik.handleChange} 
+        onBlur={formik.handleBlur}
+        color="primary"
+        error={formik.errors.rating && formik.touched.rating}
+        helperText={ formik.touched.rating && formik.errors.rating}
+
+        />     
+        </div>        
        
 
         <Button type="submit" variant="contained" endIcon={<DoneIcon /> }>

@@ -123,8 +123,10 @@ useEffect(getMovies, [])
                     movieDes={movie.plot}
                     movieImg={movie.image_url}
                     onDelete={deleteMov}
+                    rating={movie.rating}
                     id={movie.mid}
-                  
+                    trailer={movie.trailer}
+                    
                     
                     // id={index}
                    
