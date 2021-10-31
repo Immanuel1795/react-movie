@@ -2,29 +2,50 @@ import React from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
+import TextField from '@mui/material/TextField';
 import swal from "sweetalert";
 // import { updateStoredMovies } from "./getFromStorage";
 import {  useHistory } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import {useFormik}  from 'formik';
+import * as yup from 'yup';
 
+
+
+
+const addMovieValidationSchema  =  yup.object({
+  title: yup.string().max(20, "Provide a smaller title 😁").required("The movie will definitely have a name 😉"),
+  plot: yup.string().min(60, "Provide a bigger description 😁").required("Feel free to enter your own story 😜"),
+  image_url: yup.string().matches(/https?:\/\/w{0,3}\w*?\.(\w*?\.)?\w{2,3}\S*|www\.(\w*?\.)?\w*?\.\w{2,3}\S*|(\w*?\.)?\w*?\.\w{2,3}[\/\?]\S*/, "Invalid Url🙅").required("Think of a adding a pic 😜"),
+  trailer: yup.string().matches(/https?:\/\/w{0,3}\w*?\.(\w*?\.)?\w{2,3}\S*|www\.(\w*?\.)?\w*?\.\w{2,3}\S*|(\w*?\.)?\w*?\.\w{2,3}[\/\?]\S*/, "Invalid Url 🙅‍♂️").required("Why not give it a trailer 😜")
+})
 
 
 
 function AddMovie() {
   const history = useHistory();
+
+  const formik = useFormik({
+      initialValues: { 
+      title: "",
+      plot: "",
+      image_url: "",
+      trailer: "", 
+  },
+    validationSchema:addMovieValidationSchema,
+    onSubmit: (values) => {
+      submitMovie(values)
+    }
+
+})
   
 
-  function onAdd(newMov) {
-   
-    
-    // setMovies((prevMovie) => {
-    //   // console.log({...newMov, id: movies.length+1})
-    //   updateStoredMovies([...prevMovie, {...newMov, mid: movies.length}])
-    //   return [...prevMovie, {...newMov, mid: movies.length}];
-    // });
 
+  
+
+  
+  function submitMovie(newMov) {
     fetch("https://6173de3a110a740017223189.mockapi.io/movies/",{
       method: "POST",
       body: JSON.stringify(newMov),
@@ -39,39 +60,6 @@ function AddMovie() {
       });
       history.push(`/movies`)
     })
-
-    
-  }
-
-  
-  const [addMovie, setAddMovie] = useState({
-    title: "",
-    plot: "",
-    image_url: "",
-    trailer: "",
-  });
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    
-
-    setAddMovie((prevValue) => {
-      return {
-        ...prevValue,
-        [name]: value,
-      };
-    });
-  }
-
-  function submitMovie(event) {
-    onAdd(addMovie);
-    setAddMovie({
-      title: "",
-      plot: "",
-      image_url: "",
-     trailer: "",
-    });
-    event.preventDefault();
   }
 
   return (
@@ -79,81 +67,81 @@ function AddMovie() {
     
    
     <div className="formz" >
-      <form>
+      <form onSubmit={formik.handleSubmit}>
       <Box >
 
-      
-        <div class="mb-3">
-          <label for="mname" class="form-label">
-            Movie Name
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="title"
-            value={addMovie.title}
-            onChange={handleChange}
-          />
-        </div>
 
-        
+      <div class="mb-3">
+        <TextField 
+        className="formText" 
+        fullWidth label="Movie Name" 
+        id="title"  
+        name="title" 
+        value={formik.values.title}  
+        onChange={formik.handleChange} 
+        onBlur={formik.handleBlur}
+        color="primary"
+        error={formik.errors.title && formik.touched.title}
+        helperText={formik.touched.title  && formik.errors.title}
 
-        {/* <div class="mb-3">
-        <TextField className="formText" fullWidth label="Movie Name" id="fullWidth"  name="title" value={addMovie.title}  onChange={handleChange} color="warning"/>
-        </div> */}
-        <div class="mb-3">
-          <label for="murl" class="form-label">
-            Image Url
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="image_url"
-            value={addMovie.image_url}
-            onChange={handleChange}
-          />
-        </div>
-        {/* <div class="mb-3">
-        <TextField className="formText" fullWidth label="Image Url" id="fullWidth"  name="image_url" value={addMovie.image_url}  onChange={handleChange} color="warning" />
-        </div> */}
-        <div class="mb-3">
-          <label for="mdes" class="form-label">
-            Description
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="plot"
-            value={addMovie.plot}
-            onChange={handleChange}
-          />
+        />     
         </div>
 
         <div class="mb-3">
-          <label for="trailer" class="form-label">
-            Trailer
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="trailer"
-            value={addMovie.trailer}
-            onChange={handleChange}
-          />
+        <TextField 
+        className="formText" 
+        fullWidth label="Movie Image" 
+        id="image_url"  
+        name="image_url" 
+        value={formik.values.image_url}  
+        onChange={formik.handleChange} 
+        onBlur={formik.handleBlur}
+        color="primary"
+        error={formik.errors.image_url && formik.touched.image_url}
+        helperText={formik.touched.image_url && formik.errors.image_url}
+
+        />     
         </div>
 
-        {/* <div class="mb-3">
-        <TextField className="formText" fullWidth label="Description" id="fullWidth"  name="plot" value={addMovie.plot}  onChange={handleChange} color="warning" />
-        </div> */}
-      
+        <div class="mb-3">
+        <TextField 
+        className="formText" 
+        fullWidth label="Movie Plot" 
+        id="plot"  
+        name="plot" 
+        value={formik.values.plot}  
+        onChange={formik.handleChange} 
+        onBlur={formik.handleBlur}
+        color="primary"
+        error={formik.errors.plot && formik.touched.plot}
+        helperText={formik.touched.plot && formik.errors.plot}
+
+        />     
+        </div>
+
+        <div class="mb-3">
+        <TextField 
+        className="formText" 
+        fullWidth label="Movie Trailer" 
+        id="trailer"  
+        name="trailer" 
+        value={formik.values.trailer}  
+        onChange={formik.handleChange} 
+        onBlur={formik.handleBlur}
+        color="primary"
+        error={formik.errors.trailer && formik.touched.trailer}
+        helperText={formik.touched.trailer && formik.errors.trailer}
+
+        />     
+        </div>     
        
-       
 
-        <Button variant="contained" endIcon={<AddIcon /> }  onClick={submitMovie}>
+        <Button type= "submit" variant="contained" endIcon={<AddIcon /> }>
   Add
 </Button>
 
         <Button
+          
           startIcon={<ArrowBackIosIcon />}
             variant="contained"
             className="mt-auto ml-2"

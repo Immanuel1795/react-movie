@@ -55,6 +55,8 @@ function Header(props) {
                 <Navbar.Text className="nav-text" style={!props.themez ? styles[0].black : styles[0].white }>Add Movie</Navbar.Text>
                   </Link>
 
+                  
+
                
                
                   <IconButton sx={{ ml: 1 }} onClick={props.onThemeChange}  elevation={0} disableRipple  style={{ backgroundColor: 'transparent' }}>

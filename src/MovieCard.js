@@ -34,8 +34,13 @@ function MovieCard(props) {
     history.push(`/update_movie/${props.id}`);
   }
     return (
-        <Grid item lg={3} md={4} sm={6}>
-            <Card sx={{ maxWidth: 345, justifyContent: 'center'}}>
+        <Grid item lg={3} md={4} sm={6} container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        >
+            <Card sx={{ maxWidth: 345}}>
       <CardMedia
         component="img"
         height="250"
