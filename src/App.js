@@ -19,6 +19,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider  } from '@mui/material/styles';
 import  {themes} from "./theme";
 import Formk from "./Formk";
+import ColorGame from "./ColorGame";
+
 
 
 
@@ -79,6 +81,7 @@ function App() {
         <Route exact path="/update_movie/:id"><UpdateMovie /></Route>
         <Route exact path="/add_movie" ><AddMovie /></Route>
         <Route exact path="/formik"><Formk /></Route>
+        <Route exact path="/color_game"><ColorGame /></Route>
         <Route exact path="/"><About /></Route>
         
     </Switch>

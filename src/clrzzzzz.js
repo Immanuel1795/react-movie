@@ -9,7 +9,7 @@ const initialState = {
 
 const reducer = (state, action) => {}
 
-function HHH() {
+function ColorGame() {
 
     const [color, setColor] = useState("");
 
@@ -44,7 +44,6 @@ function HHH() {
         </button>
   
         {colors.map((clr, index) => {
-          console.log(clr)
           return <ColorBox color={clr} key={index} />;
         })}
       </div>
@@ -52,7 +51,6 @@ function HHH() {
 }
 
 function ColorBox({ color }) {
-  console.log(color)
     const styles = {
       backgroundColor: color,
       height: "100px",
@@ -63,4 +61,4 @@ function ColorBox({ color }) {
   }
   
 
-export default HHH
+export default ColorGame
