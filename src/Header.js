@@ -55,6 +55,10 @@ function Header(props) {
                 <Navbar.Text className="nav-text" style={!props.themez ? styles[0].black : styles[0].white }>Add Movie</Navbar.Text>
                   </Link>
 
+                  <Link to="/color_game"  className="nav-link active">
+                <Navbar.Text className="nav-text" style={!props.themez ? styles[0].black : styles[0].white }>Color Game</Navbar.Text>
+                  </Link>
+
                   
 
                
