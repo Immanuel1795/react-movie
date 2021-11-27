@@ -41,15 +41,16 @@ function AddMovie() {
 
 })
   
-
+const apiUrl = "https://movie-app-immanuel.herokuapp.com";
 
   
-
+//in case of mock api then  body: JSON.stringify(newMov),
   
   function submitMovie(newMov) {
-    fetch("https://6173de3a110a740017223189.mockapi.io/movies/",{
+    console.log([newMov])
+    fetch(`${apiUrl}/movies`,{
       method: "POST",
-      body: JSON.stringify(newMov),
+      body: JSON.stringify([newMov]),
       headers: {"Content-type": "application/json"},
     })
     .then(data=>data.json())

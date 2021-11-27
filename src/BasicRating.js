@@ -6,6 +6,7 @@ import Rating from '@mui/material/Rating';
 export default function BasicRating({id, title, plot, image_url, trailer, rating}) {
   const [value, setValue] = useState(rating);
  
+  const apiUrl = "https://movie-app-immanuel.herokuapp.com";
 
 
   console.log(rating)
@@ -22,7 +23,7 @@ export default function BasicRating({id, title, plot, image_url, trailer, rating
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
-          fetch("https://6173de3a110a740017223189.mockapi.io/movies/" + id,{
+          fetch(`${apiUrl}/movies/${id}`,{
     method: "PUT",
     body: JSON.stringify({
     title:title,

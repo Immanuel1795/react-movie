@@ -1,49 +1,34 @@
-
 // import movieData from "./movie";
 
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // import { updateStoredMovies } from "./getFromStorage";
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-
-
-
-
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 import swal from "sweetalert";
 import MovieCard from "./MovieCard";
 
-
-
-
-
 function MovieList() {
+  // const apiUrl = "https://6173de3a110a740017223189.mockapi.io";
+  const apiUrl = "https://movie-app-immanuel.herokuapp.com";
 
-    
-//   const [movies, setMovies] = useState(movieData);
+  //   const [movies, setMovies] = useState(movieData);
 
-const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
 
+  const getMovies = () => {
+    fetch(`${apiUrl}/movies`)
+      .then((data) => data.json())
+      .then((movies) => setMovies(movies));
+  };
 
-
-const getMovies = ()=>{
-  fetch("https://6173de3a110a740017223189.mockapi.io/movies")
-  .then(data => data.json())
-  .then((movies)=>setMovies(movies));
-}
-
-useEffect(getMovies, [])
-
-
+  useEffect(getMovies, []);
 
   const [searchTerm, setSearchTerm] = useState("");
-  
-  
- 
-  
 
   function deleteMov(id) {
+    console.log(id)
     swal({
       title: "Are you sure?",
       icon: "warning",
@@ -51,64 +36,36 @@ useEffect(getMovies, [])
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        
-        // setMovies((prevMovie) => {  
 
-        //     updateStoredMovies(
-        //          prevMovie.filter((x,index)=>x.mid !== id)
-        //     )
-         
-        //   return prevMovie.filter((x, index) => {
-        //     return x.mid !== id;
-        //   });
-        // });
-
-        fetch("https://6173de3a110a740017223189.mockapi.io/movies/" + id,{
-          method: "DELETE"
+        fetch(`${apiUrl}/movies/${id}`, {
+          method: "DELETE",
         })
-        .then((data)=>data.json())
-        .then((data)=>{
-          swal("Movie has been removed successfully", {
-            icon: "success",
+          .then((data) => data.json())
+          .then((data) => {
+            swal("Movie has been removed successfully", {
+              icon: "success",
+            });
+            getMovies();
           });
-          getMovies()})
       }
-
-      
     });
   }
 
-  
-
-  
-
   return (
-    
-    < >
-     
+    <>
+      <div className="search-section">
+        <input
+          type="text"
+          placeholder="Search for a movie"
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      </div>
 
-      
-    
-
-      
-
-        <div className="search-section">
-          <input
-            type="text"
-            placeholder="Search for a movie"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-          />
-
-
-        </div>
-
-        
-
-        <div className="card-section">
+      <div className="card-section">
         <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={1}>
+          <Grid container spacing={1}>
             {movies
               .filter((mov) =>
                 mov.title
@@ -116,7 +73,7 @@ useEffect(getMovies, [])
                   .includes(searchTerm.toLocaleLowerCase())
               )
               .map((movie) => {
-                
+                console.log(movie)
                 return (
                   <MovieCard
                     movieName={movie.title}
@@ -124,26 +81,14 @@ useEffect(getMovies, [])
                     movieImg={movie.image_url}
                     onDelete={deleteMov}
                     rating={movie.rating}
-                    id={movie.mid}
+                    id={movie._id}
                     trailer={movie.trailer}
-                    
-                    
-                    // id={index}
-                   
-
                   />
                 );
               })}
-          
-</Grid>
-              </Box>
-        </div>
-
-
-
-        
-     
-      
+          </Grid>
+        </Box>
+      </div>
     </>
   );
 }

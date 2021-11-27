@@ -15,13 +15,13 @@ function MovieDetails() {
     const {id} = useParams();
     const history = useHistory();
     // const movie = getStorage("movies")[id]
-    
+    const apiUrl = "https://movie-app-immanuel.herokuapp.com";
 
     
 
     
     useEffect(()=>{
-      fetch(`https://6173de3a110a740017223189.mockapi.io/movies/${id}`)
+      fetch(`${apiUrl}/movies/${id}`)
       .then(data => data.json())
       .then((movies)=>setMovies(movies));
     }, [id])

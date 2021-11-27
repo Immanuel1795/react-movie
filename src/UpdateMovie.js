@@ -36,8 +36,12 @@ function UpdateMovie() {
    
   });
 
+  const apiUrl = "https://movie-app-immanuel.herokuapp.com";
+
+  
+
   const getMovies = ()=>{
-    fetch("https://6173de3a110a740017223189.mockapi.io/movies/" + id)
+    fetch(`${apiUrl}/movies/${id}`)
     .then(data => data.json())
     .then((movies)=>{
       setUpdateMovie({
@@ -67,7 +71,7 @@ useEffect(getMovies, [id])
 
   function updateMovies(updateMovie) {
    
-  fetch("https://6173de3a110a740017223189.mockapi.io/movies/" + id,{
+  fetch(`${apiUrl}/movies/${id}`,{
     method: "PUT",
     body: JSON.stringify(updateMovie),
     headers: {"Content-type": "application/json"},
