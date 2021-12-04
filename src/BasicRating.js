@@ -1,12 +1,13 @@
 import React, { useState} from 'react'
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import apiUrl from "./globalConstant"
 
 
 export default function BasicRating({id, title, plot, image_url, trailer, rating}) {
   const [value, setValue] = useState(rating);
  
-  const apiUrl = "https://movie-app-immanuel.herokuapp.com";
+
 
 
   console.log(rating)

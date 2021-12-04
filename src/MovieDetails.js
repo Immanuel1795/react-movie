@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import {  useHistory } from 'react-router-dom'
 // import { getStorage } from "./getFromStorage";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
+import apiUrl from "./globalConstant"
 
 
 
@@ -15,7 +15,7 @@ function MovieDetails() {
     const {id} = useParams();
     const history = useHistory();
     // const movie = getStorage("movies")[id]
-    const apiUrl = "https://movie-app-immanuel.herokuapp.com";
+   
 
     
 

@@ -9,7 +9,7 @@ import * as yup from 'yup';
 import swal from "sweetalert";
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-
+import apiUrl from "./globalConstant"
 
 
 
@@ -36,7 +36,7 @@ function UpdateMovie() {
    
   });
 
-  const apiUrl = "https://movie-app-immanuel.herokuapp.com";
+  
 
   
 

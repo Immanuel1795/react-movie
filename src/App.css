@@ -135,6 +135,8 @@ background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-
     margin: 10px;
 }
 
+input.input-box, textarea { background: red; }
+
 
 
 

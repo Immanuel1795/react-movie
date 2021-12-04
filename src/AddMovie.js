@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {useFormik}  from 'formik';
 import * as yup from 'yup';
+import apiUrl from "./globalConstant"
 
 
 
@@ -41,7 +42,7 @@ function AddMovie() {
 
 })
   
-const apiUrl = "https://movie-app-immanuel.herokuapp.com";
+
 
   
 //in case of mock api then  body: JSON.stringify(newMov),

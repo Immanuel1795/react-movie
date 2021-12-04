@@ -8,10 +8,11 @@ import Box from "@mui/material/Box";
 
 import swal from "sweetalert";
 import MovieCard from "./MovieCard";
+import apiUrl from "./globalConstant"
 
 function MovieList() {
   // const apiUrl = "https://6173de3a110a740017223189.mockapi.io";
-  const apiUrl = "https://movie-app-immanuel.herokuapp.com";
+
 
   //   const [movies, setMovies] = useState(movieData);
 
