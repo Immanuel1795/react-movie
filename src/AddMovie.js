@@ -48,11 +48,14 @@ function AddMovie() {
 //in case of mock api then  body: JSON.stringify(newMov),
   
   function submitMovie(newMov) {
-    console.log([newMov])
-    fetch(`${apiUrl}/movies`,{
+
+
+    const token  = localStorage.getItem('token')
+      if(token){
+        fetch(`${apiUrl}/movies`,{
       method: "POST",
       body: JSON.stringify([newMov]),
-      headers: {"Content-type": "application/json"},
+      headers: {"Content-type": "application/json", 'x-auth-token': localStorage.getItem('token')},
     })
     .then(data=>data.json())
     .then(data=>{
@@ -63,6 +66,13 @@ function AddMovie() {
       });
       history.push(`/movies`)
     })
+      } else {
+        swal("Login to Add Movie", "Try again", "error");
+        localStorage.removeItem('token');
+        history.push('/users/login')
+      }
+
+   
   }
 
   return (

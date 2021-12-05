@@ -10,11 +10,15 @@ import swal from "sweetalert";
 import MovieCard from "./MovieCard";
 import apiUrl from "./globalConstant"
 
+
 function MovieList() {
   // const apiUrl = "https://6173de3a110a740017223189.mockapi.io";
 
 
   //   const [movies, setMovies] = useState(movieData);
+
+ 
+
 
   const [movies, setMovies] = useState([]);
 
@@ -29,7 +33,7 @@ function MovieList() {
   const [searchTerm, setSearchTerm] = useState("");
 
   function deleteMov(id) {
-    console.log(id)
+
     swal({
       title: "Are you sure?",
       icon: "warning",
@@ -40,6 +44,7 @@ function MovieList() {
 
         fetch(`${apiUrl}/movies/${id}`, {
           method: "DELETE",
+          headers: {"Content-type": "application/json", 'x-auth-token': localStorage.getItem('token')},
         })
           .then((data) => data.json())
           .then((data) => {
@@ -74,7 +79,6 @@ function MovieList() {
                   .includes(searchTerm.toLocaleLowerCase())
               )
               .map((movie) => {
-                console.log(movie)
                 return (
                   <MovieCard
                     movieName={movie.title}

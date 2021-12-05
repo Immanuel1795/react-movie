@@ -10,7 +10,7 @@ export default function BasicRating({id, title, plot, image_url, trailer, rating
 
 
 
-  console.log(rating)
+
 
   return (
     <Box
@@ -34,7 +34,7 @@ export default function BasicRating({id, title, plot, image_url, trailer, rating
     rating: newValue
    
   }),
-    headers: {"Content-type": "application/json"},
+    headers: {"Content-type": "application/json",'x-auth-token': localStorage.getItem('token')},
   })
   .then(data=>data.json())
   

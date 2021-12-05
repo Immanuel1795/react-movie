@@ -139,4 +139,40 @@ input.input-box, textarea { background: red; }
 
 
 
+  
+  
+  .wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 100px;
+   
+  
+   
+  }
+
+  @media (max-width: 992px) { 
+    .wrapper {
+         padding: 50px;    
+            
+      }
+   }
+  
+ 
+  
+  
+  
+  
+ 
+
+ 
+
+
+
+
+
+
 

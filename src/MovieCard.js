@@ -21,7 +21,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import BasicRating from './BasicRating';
-
+import swal from "sweetalert";
 function MovieCard(props) {
 
     const [showDes, setShowDes] = useState(true);
@@ -32,8 +32,30 @@ function MovieCard(props) {
   const history = useHistory();
 
   function updateMov() {
-    history.push(`/update_movie/${props.id}`);
+    const token  = localStorage.getItem('token')
+      if(token){
+        history.push(`/update_movie/${props.id}`);
+      } else {
+        swal("Login to Update Movie", "Try again", "error");
+        localStorage.removeItem('token');
+        history.push('/users/login')
+      }
+   
   }
+
+  function deleteMovies(){
+   
+      const token  = localStorage.getItem('token')
+      if(token){
+        props.onDelete(props.id)
+      } else {
+        swal("Login to Delete Movie", "Try again", "error");
+        localStorage.removeItem('token');
+        history.push('/users/login')
+      }
+    
+  }
+
     return (
         <Grid item lg={3} md={4} sm={6} container
         spacing={0}
@@ -133,9 +155,10 @@ function MovieCard(props) {
             variant="contained"
             className="mt-auto ml-2"
             color="error"
-            onClick={() => {
-                props.onDelete(props.id);
-              }}
+            onClick={deleteMovies}
+            // onClick={() => {
+            //     props.onDelete(props.id);
+            //   }}
           >
             Delete
           </Button>

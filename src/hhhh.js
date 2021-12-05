@@ -64,3 +64,26 @@ function ColorBox({ color }) {
   
 
 export default HHH
+
+
+async function  getMovies() {
+  fetch(`http://localhost:9000/movies`, {
+    headers: {
+      'x-auth-token': localStorage.getItem('token')
+    }
+  })
+    .then((data) => data.json())
+    .then((movies) => setMovies(movies));
+};
+
+
+
+useEffect(()=>{
+  const token  = localStorage.getItem('token')
+  if(token){
+   getMovies();
+  } else {
+    localStorage.removeItem('token');
+    history.push('/users/login')
+  }
+}, [])

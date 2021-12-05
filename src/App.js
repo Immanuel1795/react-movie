@@ -1,7 +1,7 @@
 import "./App.css";
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {  Switch, Route } from 'react-router-dom';
 import MovieList from "./MovieList";
@@ -20,6 +20,9 @@ import { createTheme, ThemeProvider  } from '@mui/material/styles';
 import  {themes} from "./theme";
 import Formk from "./Formk";
 import ColorGame from "./ColorGame";
+import Signup from "./Signup";
+import Login from "./Login";
+
 
 
 
@@ -28,14 +31,6 @@ import ColorGame from "./ColorGame";
 
 
 function App() {
-
-  
-
-
- 
- 
-
-
 
 
   const [darkMode, setDarkMode] = useState(false);
@@ -51,30 +46,32 @@ function App() {
   function themeChanger(){
     setDarkMode(!darkMode)
   }
+
+
+  const [sign, setSign] = useState(localStorage.getItem('token'));
+ 
+
+   
+   useEffect(()=>{
+    const token  = localStorage.getItem('token')
+    if(token){
+      setSign(true);
+    }
+  }, [])
   
  
   return (
     <div>
       
        
-         
-      <ThemeProvider  theme={darkTheme}>
+      <Switch>
+      <ThemeProvider  theme={darkTheme}>      
       <CssBaseline />
-          <Header onThemeChange = {themeChanger} themez = {darkMode}/>
-         
-
-         
-{/* 
-          <ThemeProvider  theme={darkTheme}>
-         
-          <Navigation onThemeChange = {themeChanger} themez = {darkMode}/>
-          </ThemeProvider> */}
+        <Header onThemeChange = {themeChanger} themez = {darkMode} sign={sign} setSign={setSign}/> 
           
-      
-
-        <Switch>
         
-       
+        <Route exact path="/users/signup"><Signup/></Route>
+        <Route exact path="/users/login"><Login setSign={setSign}/></Route>
 
         <Route exact path="/movies/:id"><MovieDetails/></Route>
         <Route exact path="/movies">< MovieList/></Route>
@@ -84,8 +81,9 @@ function App() {
         <Route exact path="/color_game"><ColorGame /></Route>
         <Route exact path="/"><About /></Route>
         
-    </Switch>
+      
     </ThemeProvider>
+    </Switch>
       </div>
     
   );

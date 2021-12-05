@@ -41,6 +41,7 @@ function UpdateMovie() {
   
 
   const getMovies = ()=>{
+        
     fetch(`${apiUrl}/movies/${id}`)
     .then(data => data.json())
     .then((movies)=>{
@@ -70,11 +71,14 @@ useEffect(getMovies, [id])
 
 
   function updateMovies(updateMovie) {
-   
+
+    const token  = localStorage.getItem('token')
+      if(token){
+         
   fetch(`${apiUrl}/movies/${id}`,{
     method: "PUT",
     body: JSON.stringify(updateMovie),
-    headers: {"Content-type": "application/json"},
+    headers: {"Content-type": "application/json", 'x-auth-token': localStorage.getItem('token')},
   })
   .then(data=>data.json())
   .then(data=>{
@@ -84,6 +88,12 @@ useEffect(getMovies, [id])
       button: "Aww yiss!",
     });
     history.push(`/movies`)})
+      } else {
+        swal("Login to Update  Movie", "Try again", "error");
+        localStorage.removeItem('token');
+        history.push('/users/login')
+      }
+ 
   }
 
 
