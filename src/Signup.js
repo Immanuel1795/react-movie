@@ -68,7 +68,7 @@ function Signup() {
    <div className="formz">
     <form onSubmit={formik.handleSubmit}> 
     <TextField 
-        className="formText" 
+        className="formText m-2" 
         fullWidth label="UserName" 
         id="username"  
         name="username" 
@@ -81,7 +81,7 @@ function Signup() {
 
         />     
       <TextField 
-        className="formText" 
+        className="formText m-2" 
         fullWidth label="Password" 
         id="password"  
         name="password" 
@@ -95,7 +95,7 @@ function Signup() {
         /> 
 
          <TextField 
-        className="formText" 
+        className="formText m-2" 
         fullWidth label="Password Confirm" 
         id="passwordConfirm"  
         name="passwordConfirm" 
@@ -107,7 +107,7 @@ function Signup() {
         helperText={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
 
         />        
-        <Button type= "submit" variant="contained" endIcon={<AddIcon /> }>SignUp</Button>
+        <Button  className="m-2" type= "submit" variant="contained" endIcon={<AddIcon /> }>SignUp</Button>
     </form>
 </div>
 

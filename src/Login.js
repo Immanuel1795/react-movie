@@ -68,7 +68,7 @@ function Login(props) {
       <div className="formz">
        <form onSubmit={formik.handleSubmit}> 
        <TextField 
-           className="formText" 
+           className="formText m-2" 
            fullWidth label="UserName" 
            id="username"  
            name="username" 
@@ -81,7 +81,7 @@ function Login(props) {
    
            />     
          <TextField 
-           className="formText" 
+           className="formText m-2" 
            fullWidth label="Password" 
            id="password"  
            name="password" 
@@ -95,7 +95,7 @@ function Login(props) {
            /> 
    
     
-           <Button type= "submit" variant="contained" >Login</Button>
+           <Button className="m-2"  type= "submit" variant="contained" >Login</Button>
        </form>
    </div>
    
